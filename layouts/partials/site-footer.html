@@ -1,15 +1,18 @@
 <footer class="{{ .Site.Params.background_color_class | default "bg-black" }} bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="{{ .Site.BaseURL }}" >
+  <div class="flex flex-wrap justify-between">
+  {{ if .Site.Params.mailInFooter }}
+    <a class="f4 fw4 hover-white white-70 dib pv2 ph2" href="mailto:{{ .Site.Params.mailInFooter }}">{{ .Site.Params.mailInFooter }}</a>
+  {{ end }}
+  <a class="f4 fw4 hover-white no-underline white-70 dib pv2 ph2" href="{{ .Site.BaseURL }}" >
     &copy; {{ with .Site.Copyright | default .Site.Title }} {{ . | safeHTML }} {{ now.Format "2006"}} {{ end }}
   </a>
     <div>{{ partial "social-follow.html" . }}</div>
 
     {{ if .Site.Menus.footer }}
-      <ul class="pv2 ma0">
+      <ul class="pv2 ma0 ph2">
         {{ range .Site.Menus.footer }}
           <li class="list dib">
-            <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv0 ph1" href="{{ .URL }}" title="{{ .Name }} page">
+            <a class="f4 fw4 hover-white no-underline white-70 dib pv0 ph1" href="{{ .URL }}" title="{{ .Name }} page">
               {{ .Name }}
             </a>
           </li>
